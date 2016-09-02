@@ -19,7 +19,7 @@ app.post('/users', (req, res) => {
         data[req.body.email] = 0;
     }
 
-    res.send('100');
+    res.sendStatus(200);
 });
 
 app.listen(process.env.PORT || 3000, () => {
