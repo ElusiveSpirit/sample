@@ -8,10 +8,18 @@ app.use('/', express.static('public'));
 app.use(parser.json());
 app.use(technologger);
 
-app.post('/users', (req, res, body) => {
-    console.log(body);
-    res.send('0');
-    // TODO: вернуть количество обращений
+let data = {};
+
+app.post('/users', (req, res) => {
+    console.log(req.body);
+
+    if (data[req.body.email]) {
+        data[req.body.email] += 1;
+    } else {
+        data[req.body.email] = 0;
+    }
+
+    res.send('100');
 });
 
 app.listen(process.env.PORT || 3000, () => {
