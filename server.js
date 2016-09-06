@@ -11,15 +11,14 @@ app.use(technologger);
 let data = {};
 
 app.post('/users', (req, res) => {
-    console.log(req.body);
 
     if (data[req.body.email]) {
         data[req.body.email] += 1;
     } else {
-        data[req.body.email] = 0;
+        data[req.body.email] = 1;
     }
 
-    res.sendStatus(200);
+    res.send(data[req.body.email].toString());
 });
 
 app.listen(process.env.PORT || 3000, () => {
